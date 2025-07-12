@@ -174,15 +174,6 @@ class DashboardPage extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: Container(
-        decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.3)),
-        child: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [SizedBox(height: 16)],
-          ),
-        ),
-      ),
     );
   }
 }
@@ -192,26 +183,12 @@ class BookingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.calendar_today,
-            size: 80,
-            color: Color.fromARGB(255, 219, 38, 38),
-          ),
-          SizedBox(height: 16),
-          Text(
-            'Bookings',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Manage all your bookings here',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-        ],
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/Background 1.jpg'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -222,26 +199,12 @@ class ServicesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.miscellaneous_services,
-            size: 80,
-            color: Color.fromARGB(255, 219, 38, 38),
-          ),
-          SizedBox(height: 16),
-          Text(
-            'Services',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Manage your services here',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-        ],
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/Background 1.jpg'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -252,22 +215,12 @@ class CustomersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.people, size: 80, color: Color.fromARGB(255, 219, 38, 38)),
-          SizedBox(height: 16),
-          Text(
-            'Customers',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Manage your customers here',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-        ],
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/Background 1.jpg'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -278,26 +231,12 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.settings,
-            size: 80,
-            color: Color.fromARGB(255, 219, 38, 38),
-          ),
-          SizedBox(height: 16),
-          Text(
-            'Settings',
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Configure your system settings',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-        ],
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/Background 1.jpg'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
