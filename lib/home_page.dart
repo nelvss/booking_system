@@ -24,8 +24,9 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
+  late AnimationController _animationController;
 
   final List<Widget> _pages = [
     const DashboardPage(),
@@ -34,6 +35,21 @@ class _HomePageState extends State<HomePage> {
     const CustomersPage(),
     const SettingsPage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +112,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              _buildDrawerItem(
-                icon: Icons.home, 
-                title: 'Home', 
-                index: 0),
-              _buildDrawerItem(
-                icon: Icons.info, 
-                title: 'About Us', 
-                index: 1),
+              _buildDrawerItem(icon: Icons.home, title: 'Home', index: 0),
+              _buildDrawerItem(icon: Icons.info, title: 'About Us', index: 1),
               _buildDrawerItem(
                 icon: Icons.contact_emergency,
                 title: 'Contact Us',
@@ -135,28 +145,50 @@ class _HomePageState extends State<HomePage> {
   }) {
     final isSelected = index != null && index == _selectedIndex;
 
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: isSelected ? Colors.white : Colors.white70,
-        size: 24,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: isSelected
+            ? Colors.white.withValues(alpha: 0.2)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
       ),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: isSelected ? Colors.white : Colors.white70,
-          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+      child: ListTile(
+        leading: AnimatedScale(
+          scale: isSelected ? 1.2 : 1.0,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.elasticOut,
+          child: Icon(
+            icon,
+            color: isSelected ? Colors.white : Colors.white70,
+            size: 24,
+          ),
         ),
+        title: Text(
+          title,
+          style: TextStyle(
+            color: isSelected ? Colors.white : Colors.white70,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+        selected: isSelected,
+        onTap:
+            onTap ??
+            () {
+              setState(() {
+                _selectedIndex = index!;
+              });
+              // Trigger animation
+              if (isSelected) {
+                _animationController.forward().then((_) {
+                  _animationController.reverse();
+                });
+              }
+              Navigator.pop(context);
+            },
       ),
-      selected: isSelected,
-      onTap:
-          onTap ??
-          () {
-            setState(() {
-              _selectedIndex = index!;
-            });
-            Navigator.pop(context);
-          },
     );
   }
 }
